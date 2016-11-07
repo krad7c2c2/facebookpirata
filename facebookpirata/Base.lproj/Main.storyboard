@@ -1,26 +1,143 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ZDG-TY-fUD">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="facebookpirata" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxc-ic-7ud" customClass="LoginHeader" customModule="facebookpirata" customModuleProvider="target">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tesltock" translatesAutoresizingMaskIntoConstraints="NO" id="Lhi-lm-UkO">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="lVJ-qc-4nF"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.098039215690000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Lhi-lm-UkO" firstAttribute="leading" secondItem="dxc-ic-7ud" secondAttribute="leading" constant="23" id="9Pc-Ar-bdH"/>
+                                    <constraint firstAttribute="trailing" secondItem="Lhi-lm-UkO" secondAttribute="trailing" constant="24" id="EEG-5j-pDZ"/>
+                                    <constraint firstItem="Lhi-lm-UkO" firstAttribute="top" secondItem="dxc-ic-7ud" secondAttribute="top" constant="24" id="Xqd-Xa-rZn"/>
+                                    <constraint firstAttribute="height" constant="128" id="gbt-SM-40V"/>
+                                    <constraint firstAttribute="bottom" secondItem="Lhi-lm-UkO" secondAttribute="bottom" constant="24" id="qgI-Rw-43L"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d8s-Oj-S4J">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Si no tienes un usuario creado,automaticamente se creara uno" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10l-eX-JRl">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.098039215690000001" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="87" id="Nxd-Yd-ptx"/>
+                                    <constraint firstItem="10l-eX-JRl" firstAttribute="top" secondItem="d8s-Oj-S4J" secondAttribute="top" constant="8" id="QGw-KB-ugl"/>
+                                    <constraint firstAttribute="bottom" secondItem="10l-eX-JRl" secondAttribute="bottom" constant="16" id="Vrm-nA-am4"/>
+                                    <constraint firstItem="10l-eX-JRl" firstAttribute="leading" secondItem="d8s-Oj-S4J" secondAttribute="leading" constant="8" id="XnZ-pN-q3B"/>
+                                    <constraint firstAttribute="trailing" secondItem="10l-eX-JRl" secondAttribute="trailing" constant="8" id="mbD-1h-6fP"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Correo electronico" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqb-UB-S4S" customClass="SexiTextField" customModule="facebookpirata" customModuleProvider="target">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="adf-V0-pJK"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Contraseña" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="s50-mJ-ky5" customClass="SexiTextField" customModule="facebookpirata" customModuleProvider="target">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="d1S-Ig-Z8A"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KzO-bc-5Q7" customClass="LoginButton" customModule="facebookpirata" customModuleProvider="target">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dcZ-w3-Xj2"/>
+                                </constraints>
+                                <state key="normal" title="Iniciar Sesion">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqO-vI-1GP">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Q3a-3Q-Bhf"/>
+                                    <constraint firstAttribute="width" constant="60" id="etD-sm-gcj"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="imgres"/>
+                                <connections>
+                                    <action selector="loginFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9R0-Sa-oaO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="bqb-UB-S4S" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="0qL-kS-eFF"/>
+                            <constraint firstItem="d8s-Oj-S4J" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="4hO-ZE-sbE"/>
+                            <constraint firstItem="s50-mJ-ky5" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="5eb-Mi-mdE"/>
+                            <constraint firstItem="fqO-vI-1GP" firstAttribute="top" secondItem="KzO-bc-5Q7" secondAttribute="bottom" constant="23" id="AU4-7K-a8b"/>
+                            <constraint firstItem="KzO-bc-5Q7" firstAttribute="top" secondItem="s50-mJ-ky5" secondAttribute="bottom" constant="25" id="CiC-Ma-dab"/>
+                            <constraint firstItem="bqb-UB-S4S" firstAttribute="top" secondItem="dxc-ic-7ud" secondAttribute="bottom" constant="44" id="DGy-as-rZ2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fqO-vI-1GP" secondAttribute="trailing" constant="114" id="FXD-sx-hMV"/>
+                            <constraint firstItem="KzO-bc-5Q7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gib-AX-PWA"/>
+                            <constraint firstItem="dxc-ic-7ud" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="L2J-Tg-WAG"/>
+                            <constraint firstItem="s50-mJ-ky5" firstAttribute="top" secondItem="bqb-UB-S4S" secondAttribute="bottom" constant="17" id="MyW-gg-ZEw"/>
+                            <constraint firstItem="fqO-vI-1GP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="114" id="OTa-hP-l1m"/>
+                            <constraint firstItem="bqb-UB-S4S" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="ZBI-OJ-FmA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="d8s-Oj-S4J" secondAttribute="bottom" id="Zhq-g2-dyi"/>
+                            <constraint firstItem="s50-mJ-ky5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Zuu-zw-TtR"/>
+                            <constraint firstAttribute="trailing" secondItem="dxc-ic-7ud" secondAttribute="trailing" id="azM-8A-fty"/>
+                            <constraint firstItem="dxc-ic-7ud" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="iT6-x9-pe0"/>
+                            <constraint firstAttribute="trailing" secondItem="d8s-Oj-S4J" secondAttribute="trailing" id="ume-an-EUO"/>
+                            <constraint firstItem="KzO-bc-5Q7" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="xe1-d1-ccX"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bP7-LY-2ka"/>
+                    <nil key="simulatedTopBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="789" y="-561"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="FBp-Er-vLa">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZDG-TY-fUD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i0t-ts-RV6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="0mt-jb-Yq8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nQ-yA-mEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-119.2" y="-560.86956521739137"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="imgres" width="225" height="225"/>
+        <image name="tesltock" width="1188" height="600"/>
+    </resources>
 </document>

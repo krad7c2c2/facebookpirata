@@ -7,15 +7,56 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
+import UserNotifications
+import FBSDKCoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        FIRApp.configure()
+        
+        if #available(iOS 10.0, *) {
+        
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_,_ in })
+            
+            UNUserNotificationCenter.current().delegate = self
+            FIRMessaging.messaging().remoteMessageDelegate = self
+            
+            
+        } else {
+        
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge,.sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        
+            
+        }
+
+        
+        
+        //        if #available(iOS 8.0, *) {
+        //
+        //            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge,.sound], categories: nil)
+        //            application.registerUserNotificationSettings(settings)
+        //            application.registerForRemoteNotifications()
+        //
+        //        } else {
+        //
+        //            let types: UIRemoteNotificationType = [.alert, .badge, .sound]
+        //            application.registerForRemoteNotifications(matching: types)
+        //            
+        //        }
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification(notification:)), name: NSNotification.Name.firInstanceIDTokenRefresh, object: nil)
+        
         return true
     }
 
@@ -25,8 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        //si no esta activa se pasa a desconectado
+        FIRMessaging.messaging().disconnect()
+        
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -34,13 +76,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+       
+        FBSDKAppEvents.activateApp()
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    //llamado facebook
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+    }
+    
+    
+    func tokenRefreshNotification(notification: NSNotification) {
+        let refreshToken = FIRInstanceID.instanceID().token()
+        print("InstanceID Token: \(refreshToken)")
+        connectToFCM()
+    }
+    
+    func connectToFCM() {
+        FIRMessaging.messaging().connect {
+         error in
+            if error != nil {
+                print("No se pudo conectar \(error)")
+            } else {
+                print("conectado a FCM")
+            }
+        }
+        
+        
+    }
 
 
 }
+
+@available(iOS 10, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        let userInfo = notification.request.content.userInfo
+        
+        print("Message ID: \(userInfo["gcm.message_id"])")
+        print("%@", userInfo)
+        
+        let alertController = UIAlertController(title: "Push Not", message: "\(userInfo)", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "ok", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        
+        self.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+}
+extension AppDelegate: FIRMessagingDelegate {
+
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print("%@", remoteMessage.appData)
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
